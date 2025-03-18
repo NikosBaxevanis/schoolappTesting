@@ -98,8 +98,10 @@ public class TeacherServiceImpl implements ITeacherService {
 
         try {
             teacher = teacherDAO.getById(id);
+            //return Mapper.mapTeacherToReadOnlyDTO(teacher).orElseThrow(() -> new TeacherNotFoundException("Teacher not found in get teacher by id"));
             return Mapper.mapTeacherToReadOnlyDTO(teacher).orElseThrow(() -> new TeacherNotFoundException("Teacher not found in get teacher by id"));
-        } catch (TeacherNotFoundException | TeacherDAOException e) {
+        }
+        catch (TeacherNotFoundException | TeacherDAOException e) {
             //e.printStackTrace();
             // rollback
             throw e;
@@ -138,7 +140,7 @@ public class TeacherServiceImpl implements ITeacherService {
 //                    .map(teacher -> Mapper.mapTeacherToReadOnlyDTO(teacher).orElse(null))
 //                    .collect(Collectors.toList());
         } catch (TeacherDAOException e) {
-           // e.printStackTrace();
+            // e.printStackTrace();
             throw e;
         }
     }
